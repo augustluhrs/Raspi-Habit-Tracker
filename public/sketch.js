@@ -43,15 +43,22 @@ function setup() {
     }
   );
   
-  if (month() < 10){
-    date = year() + "0" + month() + "" + day(); 
+  let m, d;
+  if (month() < 10) {
+    m = "0" + month();
   } else {
-    date = year() + "" + month() + "" + day();
+    m = month();
   }
+  if (day() < 10) {
+    d = "0" + day();
+  } else {
+    d = day();
+  }
+  date = year() + "" + m + "" + d;
+  
   
   //habit and ui setup
   for (let i = 0; i < sixteen.length; i++) {
-  // for (let habit of sixteen){
     habits.push(new Habit(sixteen[i].name, sixteen[i].colors));
   }
   
@@ -60,16 +67,12 @@ function setup() {
     
     if (habits[i].completed){
       newButt = createButton(habits[i].name).style('backgroundColor', 'rgb(' + habits[i].colors.join(', ') + ')')
-      //newButt.mousePressed(toggleButtons(i));
     } else {
       newButt = createButton(habits[i].name);
-      // newButt = createButton(habits[i].name).mousePressed(toggleButtons(i));
     }
     
     buttons[i] = newButt;
     buttons[i].mousePressed(createMousePressedFunction(i));
-    
-    //buttons[i].mousePressed(toggleButtons.call(buttons[i], i));
   }
   
   //p5 setup
@@ -79,8 +82,6 @@ function setup() {
   dateInput = createInput(date).input(updateButtons);
   updateDayButt = createButton("Update Day").mousePressed(updateDay);
   refreshButt = createButton("Refresh Day").mousePressed(refreshDay);
-  
-  //updateDayButt = createButton("Update Days").position(100, windowHeight - 50).mousePressed(updateDay);
 }
 
 // function draw() {
@@ -118,7 +119,6 @@ function updateButtons(){
 }
 
 function toggleButtons(index){
-  // console.log(index);
   habits[index].completed = !habits[index].completed;
   if (habits[index].completed) {
     buttons[index].style('backgroundColor', 'rgb(' + habits[index].colors.join(', ') + ')');
@@ -141,7 +141,6 @@ function refreshDay(){
     }
   }
 }
-
 
 function createMousePressedFunction(index){
   return function() {toggleButtons(index)};

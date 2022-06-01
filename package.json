@@ -4,14 +4,15 @@
   "description": "A simple Node app built on fastify, instantly up and running.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.mjs"
   },
   "dependencies": {
     "express": "4.18.1",
-    "nedb": "1.8.0"
+    "nedb": "1.8.0",
+    "node-fetch": "3.2.4" 
   },
   "engines": {
-    "node": "12.x"
+    "node": "16.14.2"
   },
   "repository": {
     "url": "https://glitch.com/edit/#!/glitch-mvp-node"
